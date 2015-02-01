@@ -46,12 +46,14 @@ public class DictionarySort {
    */
   public static SearchResult sequentialSearch(String wordToFind) {
     //TODO 
+    int count=0;
     for(int i=0;i<words.size();i++){
+      count++;
       if(words.get(i).compareTo(wordToFind)==0){
         return new SearchResult(i,i);
       }
     }
-    return new SearchResult(-1,0);
+    return new SearchResult(-1,count);
   }
   
   /**
@@ -90,14 +92,18 @@ public class DictionarySort {
   public static void sortList(ArrayList<String> list) {
     //TODO
     for(int i=0;i<list.size();i++){
+      int smallest=i;
       for(int j=i+1;j<list.size();j++){
-        if(list.get(i).compareTo(list.get(j))<0){
+        if(list.get(smallest).compareTo(list.get(j))>0){
+          smallest=j;
           String temp=list.get(i);
           list.set(i,list.get(j));
           list.set(j,temp);
         }
       }
-      i=-1;
+      if(smallest!=i){
+        i--;
+      }
     }
   }
   
